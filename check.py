@@ -11,14 +11,14 @@ def timing_decorator(func):
     return wrapper
 @timing_decorator
 def factorial(n):
-    fact = 1
-    if n == 0 or n == 1:
+    if n < 0:
+        raise ValueError("Input must be a non-negative integer.")
+    if not isinstance(n, int):
+        raise TypeError("Input must be an integer")
+    if n <= 1:
         return 1
     else:
-        while n != 0:
-            fact *= n
-            n -= 1
-        return fact
+        return n * factorial(n-1)
 number = 10000
 result = factorial(number)
 print(f"Факториал числа {number} равен {result}")
